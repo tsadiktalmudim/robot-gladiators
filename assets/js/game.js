@@ -6,28 +6,40 @@ var playerMoney = 10;
 // You can also log multiple values at once like this
 console.log(playerName, playerAttack, playerHealth);
 
-var enemyName = "Roborto";
+// Game States
+// "WIN" - Player robot has defeated all enemy-bots
+//        * Fight and defeat all enemy-bots
+// "LOSE" - Player robot's health is zero less
+
+var enemyNames = ["Roborto", "Amy Android", "Robo Trumble", "Andy Roid"];
+console.log(enemyNames)
 var enemyHealth = 50;
 var enemyAttack = 12;
 var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
 console.log(promptFight);
-
-var fight = function() {
+var fight = function(enemyName) {
     window.alert("Welcome to Robot Gladiators!");
+    for (var i = 0; i < enemyNames.length; i++) {
+        console.log(enemyNames[i]);
+        console.log(i);
+        console.log(enemyNames[i] + " is at " + i + " index");
+    }
+
+
     if (promptFight === "fight" || promptFight === "FIGHT")
         enemyHealth = enemyHealth - playerAttack;
 
-    console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
+    console.log(playerName + " attacked " + enemyNames + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
 
     if (enemyHealth <= 0) {
-        window.alert(enemyName + " has died!")
+        window.alert(enemyNames + " has died!")
 
     } else {
-        window.alert(enemyName + " stil has " + enemyHealth + " health left.");
+        window.alert(enemyNames + " stil has " + enemyHealth + " health left.");
     }
     playerHealth = playerHealth - enemyAttack
     console.log(
-        enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaning."
+        enemyNames + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaning."
     )
     if (playerHealth <= 0) {
         window.alert(playerName + " has died!");
@@ -38,8 +50,7 @@ var fight = function() {
         var confirmSkip = window.confirm("Are you sure you'd like to quit?");
         if (confirmSkip) {
             window.alert(playerName + " has decided to skip this fight. Goodbye!");
-            playerMoney = playerMoney - 2;
-            else {
+            playerMoney = playerMoney - 2; {
                 fight();
             }
         }
@@ -53,4 +64,6 @@ if (playerHealth > 0) {
     console.log("Your player is still alive!")
 };
 
-fight();
+for (var i = 0; i < enemyNames.length; i++) {
+    fight(enemyNames[i])
+}
